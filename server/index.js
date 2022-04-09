@@ -45,5 +45,8 @@ app.get("/api/fortune", (req, res) => {
 app.post(`/api/Cipher/`, (req, res) => {
   res.status(200).send();
 });
+app.post(`/api/decode/`, (req, res) => {
+  res.status(200).send();
+});
 
 app.listen(port, () => console.log("Server running on 4000"));

@@ -46,11 +46,11 @@ const alphabet = [
   "Y",
   "Z",
 ];
-
+//encrypt
 const form = document.forms[0];
 const output = document.getElementById("output");
 form.addEventListener("submit", (event) => {
-  axios.post(`http://localhost:4000/api/Cipher/`).then(function (response) {
+  axios.post(`http://localhost:4000/api/Cipher`).then(function (response) {
     // const data = response.data;
   });
   event.preventDefault();
@@ -64,6 +64,29 @@ const encrypt = (char) => {
   if (alphabet.includes(char.toUpperCase())) {
     const position = alphabet.indexOf(char.toUpperCase());
     const newPosition = (position + shift) % 26;
+    return alphabet[newPosition];
+  } else {
+    return char;
+  }
+};
+
+const reverse = document.getElementById("reverse"[0]);
+const decodeOutput = document.getElementById("decode");
+reverse.addEventListener("submit", (event) => {
+  axios.post(`http://localhost:4000/api/decode/`).then(function (response) {
+    // const data = response.data;
+  });
+  event.preventDefault();
+  output.innerHTML = [...decode.plaintext.value]
+    .map((char) => decode(char))
+    .join("");
+});
+///decode
+const decode = (char) => {
+  const shift = Number(reverse.shift.value);
+  if (alphabet.includes(char.toUpperCase())) {
+    const position = alphabet.indexOf(char.toUpperCase());
+    const newPosition = (position - shift) % 26;
     return alphabet[newPosition];
   } else {
     return char;
