@@ -1,4 +1,5 @@
 const baseURL = `http://localhost:4000/api/`;
+const moviesContainer = document.querySelector("#movies-container");
 
 //compliments
 document.getElementById("complimentButton").onclick = function () {
@@ -68,3 +69,6 @@ const encrypt = (char) => {
     return char;
   }
 };
+
+const createMovie = (body) =>
+  axios.post(baseURL, body).then(moviesCallback).catch(errCallback);

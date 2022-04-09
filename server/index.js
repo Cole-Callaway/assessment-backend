@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const port = 4000;
 const app = express();
+const { createPic } = require("./controller");
 
 app.use(cors());
 
@@ -40,5 +41,7 @@ app.get("/api/fortune", (req, res) => {
 app.post(`/api/Cipher/`, (req, res) => {
   res.status(200).send();
 });
+
+app.post(`/api/picture`, createPic);
 
 app.listen(port, () => console.log("Server running on 4000"));
