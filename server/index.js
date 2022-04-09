@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-
+const port = 4000;
 const app = express();
 
 app.use(cors());
@@ -37,4 +37,8 @@ app.get("/api/fortune", (req, res) => {
   res.status(200).send(randomFortune);
 });
 
-app.listen(4000, () => console.log("Server running on 4000"));
+app.post(`/api/Cipher/`, (req, res) => {
+  res.status(200).send();
+});
+
+app.listen(port, () => console.log("Server running on 4000"));
