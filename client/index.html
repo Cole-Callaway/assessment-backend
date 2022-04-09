@@ -17,11 +17,29 @@
 
     <h2>Output</h2>
     <div id="output"></div>
-    <form>
-      <input type="text" id="img" placeholder="Paste an image URL" />
-      <button>add picture</button>
+
+    <form id="login-form">
+      <h1>Log In</h1>
+      <input type="text" id="login-username" placeholder="Username" />
+      <input type="password" id="login-password" placeholder="Password" />
+      <button>Sign In</button>
     </form>
-    <section id="picture-container"></section>
+    <form id="register-form">
+      <h1>Register</h1>
+      <input type="text" id="register-username" placeholder="Username" />
+      <input type="text" id="register-email" placeholder="Email" />
+      <input type="text" id="register-firstName" placeholder="First Name" />
+      <input type="text" id="register-lastName" placeholder="Last Name" />
+      <input type="password" id="register-password" placeholder="Password" />
+      <input
+        type="password"
+        id="register-password-2"
+        placeholder="Confirm Password"
+      />
+      <button>Register</button>
+    </form>
+
+    <section id="user-info"></section>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="frontend.js"></script>
   </body>
