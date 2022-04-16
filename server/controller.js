@@ -1,5 +1,33 @@
 const bcrypt = require("bcryptjs");
 const users = [];
+const alphabet = [
+  "A",
+  "B",
+  "C",
+  "D",
+  "E",
+  "F",
+  "G",
+  "H",
+  "I",
+  "J",
+  "K",
+  "L",
+  "M",
+  "N",
+  "O",
+  "P",
+  "Q",
+  "R",
+  "S",
+  "T",
+  "U",
+  "V",
+  "W",
+  "X",
+  "Y",
+  "Z",
+];
 
 module.exports = {
   login(req, res) {
@@ -38,5 +66,16 @@ module.exports = {
     console.log("Registering User");
     console.log(passwordHash);
     res.status(200).send(req.body);
+  },
+
+  decode: (char, output) => {
+    const shift = Number(output);
+    if (alphabet.includes(char.toUpperCase())) {
+      const position = alphabet.indexOf(char.toUpperCase());
+      const newPosition = (position - shift) % 26;
+      return alphabet[newPosition];
+    } else {
+      return char;
+    }
   },
 };

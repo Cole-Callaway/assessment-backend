@@ -69,29 +69,33 @@ const encrypt = (char) => {
     return char;
   }
 };
-
-const reverse = document.getElementById("reverse"[0]);
+//decrypt
+const reverse = document.getElementById("reverse");
+const decrypt = document.getElementById("decrypt");
 const decodeOutput = document.getElementById("decode");
 reverse.addEventListener("submit", (event) => {
-  axios.post(`http://localhost:4000/api/decode/`).then(function (response) {
-    // const data = response.data;
-  });
   event.preventDefault();
-  output.innerHTML = [...decode.plaintext.value]
-    .map((char) => decode(char))
-    .join("");
+  const shift = Number(form.shift.value);
+  const char = reverse.plaintext.value;
+  const obj = { char, shiftValue: shift };
+  axios
+    .post(`http://localhost:4000/api/decode/`, obj)
+    .then(function (response) {
+      // const data = response.data;
+      decodeOutput.innerHTML = response.data;
+    });
 });
 ///decode
-const decode = (char) => {
-  const shift = Number(reverse.shift.value);
-  if (alphabet.includes(char.toUpperCase())) {
-    const position = alphabet.indexOf(char.toUpperCase());
-    const newPosition = (position - shift) % 26;
-    return alphabet[newPosition];
-  } else {
-    return char;
-  }
-};
+// const decode = (char) => {
+//   const shift = Number(form.shift.value);
+//   if (alphabet.includes(char.toUpperCase())) {
+//     const position = alphabet.indexOf(char.toUpperCase());
+//     const newPosition = (position - shift) % 26;
+//     return alphabet[newPosition];
+//   } else {
+//     return char;
+//   }
+// };
 
 //login code
 const userContainer = document.querySelector("#user-info");

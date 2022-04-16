@@ -3,7 +3,7 @@ const cors = require("cors");
 const port = 4000;
 const app = express();
 
-const { login, register } = require("./controller");
+const { login, register, decode } = require("./controller");
 
 app.post(`/api/login`, login);
 app.post(`/api/register`, register);
@@ -46,7 +46,10 @@ app.post(`/api/Cipher/`, (req, res) => {
   res.status(200).send();
 });
 app.post(`/api/decode/`, (req, res) => {
-  res.status(200).send();
+  const char = req.body.char;
+  const shiftValue = req.body.shiftValue;
+  const sent = [...char].map((char) => decode(char, shiftValue)).join("");
+  res.status(200).send(sent);
 });
 
 app.listen(port, () => console.log("Server running on 4000"));
