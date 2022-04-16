@@ -47,28 +47,30 @@ const alphabet = [
   "Z",
 ];
 //encrypt
-const form = document.forms[0];
+const form = document.getElementById("cipher");
+const caesarCipher = document.getElementById("encrypt");
 const output = document.getElementById("output");
 form.addEventListener("submit", (event) => {
-  axios.post(`http://localhost:4000/api/Cipher`).then(function (response) {
-    // const data = response.data;
-  });
   event.preventDefault();
-  output.innerHTML = [...form.plaintext.value]
-    .map((char) => encrypt(char))
-    .join("");
+  const shiftTwo = Number(form.shift.value);
+  const char = form.plaintext.value;
+  const objTwo = { char, shiftValue: shiftTwo };
+  axios.post(`${baseURL}Cipher`, objTwo).then(function (response) {
+    // const data = response.data;
+    output.innerHTML = response.data;
+  });
 });
-
-const encrypt = (char) => {
-  const shift = Number(form.shift.value);
-  if (alphabet.includes(char.toUpperCase())) {
-    const position = alphabet.indexOf(char.toUpperCase());
-    const newPosition = (position + shift) % 26;
-    return alphabet[newPosition];
-  } else {
-    return char;
-  }
-};
+//encrypt function
+// const encrypt = (char) => {
+//   const shift = Number(form.shift.value);
+//   if (alphabet.includes(char.toUpperCase())) {
+//     const position = alphabet.indexOf(char.toUpperCase());
+//     const newPosition = (position + shift) % 26;
+//     return alphabet[newPosition];
+//   } else {
+//     return char;
+//   }
+// };
 //decrypt
 const reverse = document.getElementById("reverse");
 const decrypt = document.getElementById("decrypt");
@@ -78,12 +80,10 @@ reverse.addEventListener("submit", (event) => {
   const shift = Number(form.shift.value);
   const char = reverse.plaintext.value;
   const obj = { char, shiftValue: shift };
-  axios
-    .post(`http://localhost:4000/api/decode/`, obj)
-    .then(function (response) {
-      // const data = response.data;
-      decodeOutput.innerHTML = response.data;
-    });
+  axios.post(`${baseURL}decode`, obj).then(function (response) {
+    // const data = response.data;
+    decodeOutput.innerHTML = response.data;
+  });
 });
 ///decode
 // const decode = (char) => {

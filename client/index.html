@@ -6,10 +6,11 @@
   <body class="container">
     <button id="complimentButton">Get a compliment</button>
     <button id="fortune">Get a Fortune</button>
+
     <h1>Caesar Cipher</h1>
-    <form>
+    <form id="cipher">
       <label>Plaintext:</label>
-      <textarea name="plaintext"></textarea>
+      <textarea name="plaintext" id="encrypt"></textarea>
       <label>Shift:</label>
       <input type="number" name="shift" value="5" min="1" max="26" />
       <input type="submit" value="encrypt" />

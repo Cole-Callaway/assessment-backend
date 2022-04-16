@@ -3,7 +3,7 @@ const cors = require("cors");
 const port = 4000;
 const app = express();
 
-const { login, register, decode } = require("./controller");
+const { login, register, decode, encrypt } = require("./controller");
 
 app.post(`/api/login`, login);
 app.post(`/api/register`, register);
@@ -43,7 +43,13 @@ app.get("/api/fortune", (req, res) => {
 });
 
 app.post(`/api/Cipher/`, (req, res) => {
-  res.status(200).send();
+  const charTwo = req.body.char;
+  const shiftValueTwo = req.body.shiftValue;
+  const sentTwo = [...charTwo]
+    .map((charTwo) => encrypt(charTwo, shiftValueTwo))
+    .join("");
+
+  res.status(200).send(sentTwo);
 });
 app.post(`/api/decode/`, (req, res) => {
   const char = req.body.char;
